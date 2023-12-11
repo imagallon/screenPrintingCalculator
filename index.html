@@ -1,85 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <form action="form.html" method="get" onsubmit="return validateMe();">
-      <select name="quantity">
-        <option value="24">24</option>
-        <option value="48">48</option>
-        <option value="72">72</option>
-        <option value="144">144</option>
-        <option value="250">250</option>
-        <option value="500">500</option>
-        <option value="1000">1000</option>
-        <option value="2500">2500</option>
-        <option value="5000">5000</option>
-        <option value="10000">10000</option>
-      </select>
-      <select name="colors">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">8</option>
-      </select>
-      <!-- <br />
-      Name:<input
-        type="text"
-        name="fullname"
-        placeholder="Enter Full Name"
-      /><br />
-      Email:<input type="text" name="email" placeholder="Enter Email" /><br />
+<html lang="en" data-bs-theme="dark">
 
-      Gender:<br />
-      Male<input type="radio" name="gender" value="male" />Female<input
-        type="radio"
-        name="gender"
-        value="female"
-      /><br />
-      Binary<input type="radio" name="gender" value="binary" /><br />
-      Hobbies:<br />
-      Baseball
-      <input type="checkbox" name="hobbies" value="baseball" /> Football
-      <input type="checkbox" name="hobbies" value="football" /> Hockey
-      <input type="checkbox" name="hobbies" value="hockey" /><br />
-      Golf <input type="checkbox" name="hobbies" value="golf" /><br />
-      Confirm <input type="checkbox" name="confirm" value="confirm" /> Favorite
-      Show
-      <select name="show">
-        <option value="">Choose Below</option>
-        <option value="ATHF">Aqua Teen Hunger Force</option>
-        <option value="Family Guy">Family Guy</option>
-        <option value="Simpsons">Simpsons</option></select
-      ><br />
-      Comments<br />
-      <textarea cols="50" rows="6" name="comments"></textarea><br />
-      <input type="submit" name="submit" value="enter me" /> -->
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=, initial-scale=1.0" />
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div>
+    <button id="toggleThemeButton" class="btn btn-light">
+    </button>
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="card text-center" style="width: 18rem;">
+      <div class="card-body container-lg">
+        <form action="form.html" method="get" aria-label="Default select example" onsubmit="return validateMe();">
+          <h2 class="d-flex justify-content-center align-items-center "><strong>
+              Screen Print Calculator
+            </strong>
+          </h2>
+          <select class="form-select" name="quantity">
+            <option value="48">48</option>
+            <option value="72">72</option>
+            <option value="144">144</option>
+            <option value="250">250</option>
+          </select>
+          <select class="form-select" name="colors">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+          </select>
+          <br>
+          <button type="submit" class="btn btn-primary">
+            Calculate
+          </button>
+          <br>
+          <br>
+          <p class="card-text" id="total">Price per tee: <br>Total: </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
 </html>
 
-<script>
-  var colorPrice = "";
 
-  switch () {
-      case 1:
-          alert('case 1 executed');
-      case 2:
-          alert("case 2 executed");
-          break;
-     case 3:
-          alert("case 3 executed");
-          break;
-      case 4:
-          alert("case 4 executed");
-          break;
+</html>
+<script>
+  function validateMe() {
+    const quantity = parseInt(document.getElementsByName('quantity')[0].value);
+    const colors = parseInt(document.getElementsByName('colors')[0].value);
+
+    let pricePerTee;
+    let subTotal;
+
+    // Perform actions based on quantity and color
+    switch (true) {
+      case quantity === 48 && colors >= 1 && colors <= 8:
+        pricePerTee = [2.18, 3.30, 4.36, 5.48, 6.53, 7.66, 8.71, 9.83][colors - 1];
+        subTotal = quantity * pricePerTee;
+        break;
+      case quantity === 72 && colors >= 1 && colors <= 8:
+        pricePerTee = [1.85, 2.57, 3.30, 4.03, 4.75, 5.48, 6.20, 6.93][colors - 1];
+        subTotal = quantity * pricePerTee;
+        break;
+      case quantity === 144 && colors >= 1 && colors <= 8:
+        pricePerTee = [1.65, 2.11, 2.64, 3.17, 3.63, 4.16, 4.69, 5.21][colors - 1];
+        subTotal = quantity * pricePerTee;
+        break;
+      case quantity === 250 && colors >= 1 && colors <= 8:
+        pricePerTee = [1.45, 1.85, 2.18, 2.57, 2.90, 3.30, 3.63, 4.03][colors - 1];
+        subTotal = quantity * pricePerTee;
+        break;
       default:
-          alert("default case executed");
+        alert('Invalid selection.');
+        return false; // Return early for invalid selections
+    }
+
+
+    subTotal = subTotal.toFixed(2)
+
+    // Log the price per tee and total price
+    console.log(`Price per tee: $${pricePerTee}`);
+    console.log(`Total Subtotal: $${subTotal}`);
+    document.getElementById('total').innerText = 'Price per tee: $' + pricePerTee + '\nTotal: $' + subTotal;
+
+
+
+
+
+    // You can return false to prevent the form from submitting if needed
+    return false;
   }
+
+  function toggleThemeButton() {
+    document.addEventListener('DOMContentLoaded', function () {
+      const body = document.body;
+      const toggleButton = document.getElementById('toggleThemeButton');
+
+      // Function to toggle the theme
+      function toggleTheme() {
+        const currentTheme = body.getAttribute('data-bs-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+        // Update the data-bs-theme attribute
+        body.setAttribute('data-bs-theme', newTheme);
+
+        // Update the icon based on the new theme
+        toggleButton.innerHTML = newTheme === 'dark' ? getSunIcon() : getMoonStarsIcon();
+
+        // Save the theme preference in localStorage
+        localStorage.setItem('theme', newTheme);
+      }
+
+      // Function to get the HTML for the moon and stars icon
+      function getSunIcon() {
+        return `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon-stars-fill" viewBox="0 0 16 16">
+  <path d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278"/>
+  <path d="M10.794 3.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387a1.734 1.734 0 0 0-1.097 1.097l-.387 1.162a.217.217 0 0 1-.412 0l-.387-1.162A1.734 1.734 0 0 0 9.31 6.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387a1.734 1.734 0 0 0 1.097-1.097l.387-1.162zM13.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.156 1.156 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.156 1.156 0 0 0-.732-.732l-.774-.258a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732L13.863.1z"/>
+</svg>
+    `;
+      }
+
+      // Function to get the HTML for the sun icon
+      function getMoonStarsIcon() {
+        return `
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-brightness-high" viewBox="0 0 16 16">
+  <path d="M8 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6m0 1a4 4 0 1 0 0-8 4 4 0 0 0 0 8M8 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 0m0 13a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0v-2A.5.5 0 0 1 8 13m8-5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2a.5.5 0 0 1 .5.5M3 8a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1h2A.5.5 0 0 1 3 8m10.657-5.657a.5.5 0 0 1 0 .707l-1.414 1.415a.5.5 0 1 1-.707-.708l1.414-1.414a.5.5 0 0 1 .707 0m-9.193 9.193a.5.5 0 0 1 0 .707L3.05 13.657a.5.5 0 0 1-.707-.707l1.414-1.414a.5.5 0 0 1 .707 0zm9.193 2.121a.5.5 0 0 1-.707 0l-1.414-1.414a.5.5 0 0 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .707M4.464 4.465a.5.5 0 0 1-.707 0L2.343 3.05a.5.5 0 1 1 .707-.707l1.414 1.414a.5.5 0 0 1 0 .708z"/>
+</svg>
+    `;
+      }
+
+      // Check the initial theme preference in localStorage
+      const themePreference = localStorage.getItem('theme');
+
+      // Set the theme based on the preference in localStorage, or default to 'dark'
+      if (themePreference === 'light') {
+        body.setAttribute('data-bs-theme', 'light');
+        toggleButton.innerHTML = getMoonStarsIcon(); // Set the initial icon
+      } else {
+        body.setAttribute('data-bs-theme', 'dark');
+        toggleButton.innerHTML = getSunIcon(); // Set the initial icon
+      }
+
+      // Toggle the theme on button click
+      if (toggleButton) {
+        toggleButton.addEventListener('click', toggleTheme);
+      }
+    });
+  }
+
+  toggleThemeButton();
 </script>
